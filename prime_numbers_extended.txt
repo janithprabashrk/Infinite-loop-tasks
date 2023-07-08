@@ -1,0 +1,29 @@
+#!/bin/bash
+
+count=0
+number=2
+limit=$1
+
+is_prime() {
+  local num=$1
+  for ((i=2;i<=num/2; i++));do
+    if ((num%i == 0));then
+      return 1
+    fi
+  done
+  return 0
+}
+
+if [[ ! $limit =~ ^[0-9]+$ ]]; then
+  echo "Invalid input.Please provide a positive integer as the command line argument."
+  exit 1
+fi
+
+while((count < limit));do
+  if is_prime $number;then
+    echo $number
+    ((count++))
+  fi
+  ((number++))
+done
+
